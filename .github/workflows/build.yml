@@ -1,3 +1,4 @@
+
 name: Build Flutter APK
 
 on:
@@ -14,12 +15,11 @@ jobs:
         with:
           flutter-version: '3.22.0'
       
-      - name: Delete old android
-        run: rm -rf android
+      - name: Fix Android Embedding v1 to v2
+        run: |
+          grep -rl 'io.flutter.app' android/ | xargs sed -i 's/io.flutter.app.FlutterApplication/io.flutter.embedding.android.FlutterApplication/g'
+          grep -rl 'io.flutter.app' android/ | xargs sed -i 's/io.flutter.app.FlutterActivity/io.flutter.embedding.android.FlutterActivity/g'
       
-      - name: Recreate Android v2
-        run: flutter create --platforms=android .
-          
       - name: Get Packages
         run: flutter pub get
           
