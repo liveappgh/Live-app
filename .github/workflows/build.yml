@@ -14,11 +14,14 @@ jobs:
         with:
           flutter-version: '3.22.0'
       
-      - name: Clean and Get Packages
-        run: |
-          flutter clean
-          flutter pub get
-          flutter create --platforms=android .
+      - name: Delete old android
+        run: rm -rf android
+      
+      - name: Recreate Android v2
+        run: flutter create --platforms=android .
+          
+      - name: Get Packages
+        run: flutter pub get
           
       - name: Build APK
         run: flutter build apk --release
