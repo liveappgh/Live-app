@@ -1,4 +1,3 @@
-
 name: Build Flutter APK
 
 on:
@@ -17,8 +16,8 @@ jobs:
       
       - name: Fix Android Embedding v1 to v2
         run: |
-          grep -rl 'io.flutter.app' android/ | xargs sed -i 's/io.flutter.app.FlutterApplication/io.flutter.embedding.android.FlutterApplication/g'
-          grep -rl 'io.flutter.app' android/ | xargs sed -i 's/io.flutter.app.FlutterActivity/io.flutter.embedding.android.FlutterActivity/g'
+          grep -rl 'io.flutter.app' android/ | xargs sed -i 's/io.flutter.app.FlutterApplication/io.flutter.embedding.android.FlutterApplication/g' || true
+          grep -rl 'io.flutter.app' android/ | xargs sed -i 's/io.flutter.app.FlutterActivity/io.flutter.embedding.android.FlutterActivity/g' || true
       
       - name: Get Packages
         run: flutter pub get
